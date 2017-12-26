@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "watch": "ng build -watch -o dist/"
+    "watch": "ng build -watch -o dist/  --deploy-url=/workspace/ng-ele/dist/ "
   },
   "main": "index.js",
   "private": true,
