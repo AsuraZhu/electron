@@ -20,7 +20,7 @@ export class LoginComponent  {
 
   login(name: string, pw: string) {
     this.ipc.dialog('isMessage');
-    console.log('zzz');
+    console.log('zzz111');
     this.loginService.login({
       name: name,
       pw: pw,

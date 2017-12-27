@@ -117,7 +117,7 @@ const createWindow = () =>{
 
 Menu.setApplicationMenu(menu)
 ipcMain.on('dialog',function() {
-  console.log('接受isisMessage')
+  console.log('接受isisMessages')
 })
 app.on('ready', _ => createWindow())
 app.on('window-all-closed', _ => process.platform !== 'darwin'&& app.quit())
