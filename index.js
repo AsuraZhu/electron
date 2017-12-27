@@ -1,4 +1,4 @@
-const {app, BrowserWindow, ipcMain, Menu} = require('electron')
+const {app, BrowserWindow, ipcMain, Menu,shell,dialog} = require('electron')
 let win;
 const template = [
   {
@@ -33,57 +33,70 @@ const template = [
     role: 'window',
     submenu: [
       {role: 'minimize'},
-      {role: 'close'}
+      {role: 'close'},
+      {
+        label: 'open', //打开文件
+        click() {
+          dialog.showOpenDialog({
+            defaultpath: '/',
+            properties: [ 'openFile' ],
+
+          },function(res){
+            console.log(res)
+          });
+          console.log("zzz");
+        }
+      }
     ]
   },
   {
     role: 'help',
     submenu: [
       {
-        label: 'Learn More',
+        label: 'Learn More123',
         click () { require('electron').shell.openExternal('https://electronjs.org') }
       }
     ]
   }
 ]
 
-if (process.platform === 'darwin') {
-  template.unshift({
-    label: app.getName(),
-    submenu: [
-      {role: 'about'},
-      {type: 'separator'},
-      {role: 'services', submenu: []},
-      {type: 'separator'},
-      {role: 'hide'},
-      {role: 'hideothers'},
-      {role: 'unhide'},
-      {type: 'separator'},
-      {role: 'quit'}
-    ]
-  })
+// if (process.platform === 'darwin') {
+//   template.unshift({
+//     label: app.getName(),
+//     submenu: [
+//       {role: 'about'},
+//       {type: 'separator'},
+//       {role: 'services', submenu: []},
+//       {type: 'separator'},
+//       {role: 'hide'},
+//       {role: 'hideothers'},
+//       {role: 'unhide'},
+//       {type: 'separator'},
+//       {role: 'quit'}
+//     ]
+//   })
 
-  // Edit menu
-  template[1].submenu.push(
-    {type: 'separator'},
-    {
-      label: 'Speech',
-      submenu: [
-        {role: 'startspeaking'},
-        {role: 'stopspeaking'}
-      ]
-    }
-  )
+//   // Edit menu
+//   template[1].submenu.push(
+//     {type: 'separator'},
+//     {
+//       label: 'Speech',
+//       submenu: [
+//         {role: 'startspeaking'},
+//         {role: 'stopspeaking'}
+//       ]
+//     }
+//   )
 
-  // Window menu
-  template[3].submenu = [
-    {role: 'close'},
-    {role: 'minimize'},
-    {role: 'zoom'},
-    {type: 'separator'},
-    {role: 'front'}
-  ]
-}
+//   // Window menu
+//   template[3].submenu = [
+//     {role: 'close'},
+//     {role: 'minimize'},
+//     {role: 'zoom'},
+//     {type: 'separator'},
+//     {role: 'front'}
+//   ]
+// }
 
 const menu = Menu.buildFromTemplate(template)
 Menu.setApplicationMenu(menu)
